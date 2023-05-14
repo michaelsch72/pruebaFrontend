@@ -1,0 +1,85 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-10 col-xl-8">
+
+        <!-- Cabecero -->
+        <div class="header mt-md-5 ">
+          <div class="header-body">
+            <div class="row align-items-center">
+              <div class="col">
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Card -->
+        <div class="card">
+          <div class="card-header ">
+
+            <!-- cabecero table -->
+            <div class="d-flex align-items-stretch">
+              <div class="card-body row mb-3">
+                <div class="col-sm-15">
+                  <select class="form-control" name="envio_activacion" [(ngModel)]="pageSize">
+                    <option value="5">5 Usuarios por pagina</option>
+                    <option value="10">10 Usuarios por pagina</option>
+                    <option value="20">20 usuarios por pagina</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="card-body">
+                <div class="d-flex w-100">
+                  <div class="input-group input-group-merge flex-grow-1">
+                    <input type="text" class="form-control form-control-appended" placeholder="Buscar cliente"
+                      name="filtro" [(ngModel)]="filtro">
+                    <div class="input-group-append">
+                      <button class="btn btn-primary" (click)="filtrar_usuario()">Buscar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+
+          <div class="form-floating">
+          </div>
+          <div class="table-responsive">
+            <table class="table  table-hover">
+              <thead>
+                <tr>
+                  <th>user Id</th>
+                  <th>id</th>
+                  <th>Title</th>
+                  <th>Completed</th>
+                </tr>
+              </thead>
+              <tbody class="font-size-base">
+                <tr *ngFor="let item of usuarios | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
+                  <td>
+                    {{item.userId}}
+
+                  </td>
+                  <td>
+                    {{item.id}}
+                  <td>
+                    {{item.title}}
+                  </td>
+                  <td>
+                    {{item.completed}}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <ngb-pagination *ngIf="usuarios.length >= 1" [(page)]="page" [pageSize]="pageSize" [maxSize]="10"
+          [rotate]="true" [boundaryLinks]="true" [collectionSize]="usuarios.length"></ngb-pagination>
+        <br>
+      </div>
+    </div>
+  </div>
+</div>
